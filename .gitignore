@@ -1,0 +1,15 @@
+Makefile.in
+Makefile
+
+aclocal.m4
+autom4te.cache
+config
+config.log
+config.status
+configure
+
+.deps
+*.o
+
+a.out
+test_mpi_send
