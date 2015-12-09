@@ -36,51 +36,42 @@ int MPI_Send_x(const void *buf, MPI_Count count, MPI_Datatype datatype, int dest
 
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ == 201112L)
 
-/* Notes
- *
- * If short or unsigned are not explicitly listed below, the following
- * error results:
- * '_Generic' selector of type 'short int' is not compatible with any
- * association
- * Thus, type promotion is not automatic here.
+/*
+ * "default" selector FTW!
  */
-
 #define MPI_Send(buf,count,type,dest,tag,comm)                          \
-       _Generic((count),                                               \
-                short:     MPI_Send,                                   \
-                int:       MPI_Send,                                   \
-                long:      MPI_Send_x,                                 \
-                long long: MPI_Send_x,                                 \
-                unsigned:  MPI_Send_x,                                 \
-                MPI_Aint:  MPI_Send_x,                                 \
-                MPI_Count: MPI_Send_x)(buf,count,type,dest,tag,comm)
-
+    _Generic((count),                                                   \
+             int:       MPI_Send,                                       \
+             MPI_Count: MPI_Send_x,                                     \
+             default:   MPI_Send)(buf,count,type,dest,tag,comm)
+#else
+#error you do not have c11 generics
 #endif
 
 int main(void)
 {
-   /* see note above */
    MPI_Send(NULL,(short)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
-   /* these are all okay */
    MPI_Send(NULL,0,MPI_BYTE,0,0,MPI_COMM_WORLD);
    MPI_Send(NULL,0L,MPI_BYTE,0,0,MPI_COMM_WORLD);
    MPI_Send(NULL,0LL,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
-   /* see note above */
    MPI_Send(NULL,(unsigned)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
-   /* these are okay, presumably because they match size_t (not sure) */
    MPI_Send(NULL,(unsigned long)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
    MPI_Send(NULL,(unsigned long long)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
-   /* these are all okay */
    MPI_Send(NULL,(MPI_Aint)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
    MPI_Send(NULL,(MPI_Count)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
    MPI_Count c = 0;
    MPI_Aint  a = 0;
    MPI_Send(NULL,a,MPI_BYTE,0,0,MPI_COMM_WORLD);
    MPI_Send(NULL,c,MPI_BYTE,0,0,MPI_COMM_WORLD);
+
+   const int x = 3;
+   MPI_Send(NULL,x,MPI_BYTE,0,0,MPI_COMM_WORLD);
+   volatile int y = 3;
+   MPI_Send(NULL,y,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
    return 0;
 }
