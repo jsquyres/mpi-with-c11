@@ -1,0 +1,21 @@
+Notes from the Dec 2015 meeting
+
+- "long" args are being promoted to "int"
+
+- we need to examine the ramifications to:
+  - PMPI / tool interception
+  - Do we want to allow C++ polymorphism?
+    --> does this have ramifications for pmpi tools?
+
+- what about functions that take 2 (or 3!) counts!
+  - idea: only allow (int,int) and (count,count) -- not (int,count), etc.
+
+- need a standardized suffix for the pmpi tools to intercept
+  - possibly "_x"
+
+Does the forum want this to continue?
+
+straw vote:
+- yes: n-2
+- abstain: 1
+- 1 more who didn't pay attention
