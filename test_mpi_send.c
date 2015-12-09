@@ -74,9 +74,9 @@ int main(void)
     MPI_Send(NULL,(MPI_Count)0,MPI_BYTE,0,0,MPI_COMM_WORLD);
     MPI_Count c = 0;
     MPI_Aint  a = 0;
-    printf("MPI_Count c = 0...");
-    MPI_Send(NULL,a,MPI_BYTE,0,0,MPI_COMM_WORLD);
     printf("MPI_Aint  a = 0...");
+    MPI_Send(NULL,a,MPI_BYTE,0,0,MPI_COMM_WORLD);
+    printf("MPI_Count c = 0...");
     MPI_Send(NULL,c,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
     const int x = 3;
