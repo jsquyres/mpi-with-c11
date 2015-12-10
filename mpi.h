@@ -15,8 +15,12 @@ typedef long long MPI_Count;
 #define MPI_SUCCESS 0
 
 #if defined(c_plusplus) || defined(__cplusplus)
+extern "C" {
+    #include "mpi_c_prototypes.h"
+}
 #include "mpi_cxx.h"
 #else
+#include "mpi_c_prototypes.h"
 #include "mpi_c.h"
 #endif
 

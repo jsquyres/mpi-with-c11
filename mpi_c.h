@@ -5,10 +5,6 @@
 #error do not include this file directly; include mpi.h
 #endif
 
-int MPI_Send(const char *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
-
-int MPI_Send_x(const char *buf, MPI_Count count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
-
 #undef WANT_GENERICS
 // Don't define the generics when we're building libmpi itself
 #if defined(BUILDING_LIBMPI) && BUILDING_LIBMPI
@@ -25,8 +21,7 @@ int MPI_Send_x(const char *buf, MPI_Count count, MPI_Datatype datatype, int dest
 #define MPI_Send(buf,count,type,dest,tag,comm)                          \
     _Generic((count),                                                   \
              int:       MPI_Send,                                       \
-             MPI_Count: MPI_Send_x                                      \
-    )(buf,count,type,dest,tag,comm)
+             default:   MPI_Send_x)(buf,count,type,dest,tag,comm)
 #endif
 
 #endif // MPI_C_H
