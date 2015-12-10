@@ -7,8 +7,8 @@
 
 typedef int MPI_Datatype;
 typedef int MPI_Comm;
-typedef size_t MPI_Aint;
-typedef uint64_t MPI_Count;
+typedef long MPI_Aint;
+typedef long long MPI_Count;
 
 #define MPI_BYTE 134
 #define MPI_COMM_WORLD 9999999
