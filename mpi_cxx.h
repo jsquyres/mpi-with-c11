@@ -11,6 +11,12 @@ extern "C" {
     int MPI_Send_x(const void *buf, MPI_Count count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
 }
 
+template <int>
+int MPI_Send(const void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
+{
+    return MPI_Send_x(buf,count,datatype,dest,tag,comm);
+}
+
 template <class T>
 int MPI_Send(const void *buf, T count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
 {
