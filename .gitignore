@@ -18,3 +18,4 @@ libtool
 a.out
 test_c
 test_cxx
+test_mpi_send
