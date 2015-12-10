@@ -17,15 +17,18 @@ LT_INIT
 AC_MSG_CHECKING([For C11 generics])
 AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
 #include <stdio.h>
-]],[[
+int  fooi(int  x) { return x; }
+long fool(long x) { return -x; }
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ == 201112L)
-int foo(void) {
-    int x = 3;
-    printf(_Generic((x), int: "%d", default: "%d"), x);
-}
+#define foo(x) _Generic((x), int:  fooi, long: fool)(x)
 #else
 #error your compiler sux
 #endif
+]],[[
+    int  x = 3;
+    long y = -3;
+    printf("%ld\n",foo(x));
+    printf("%ld\n",foo(y));
 ]])], [AC_MSG_RESULT([yes])],
      [AC_MSG_RESULT([no])
       AC_MSG_ERROR([Cannot continue])])
