@@ -5,15 +5,9 @@
 #error do not include this file directly; include mpi.h
 #endif
 
-int MPI_Send(const void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
-{
-    return MPI_SUCCESS;
-}
+int MPI_Send(const void *buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
 
-int MPI_Send(const void *buf, MPI_Count count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
-{
-    return MPI_SUCCESS;
-}
+int MPI_Send(const void *buf, MPI_Count count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm);
 
 template <class T>
 int MPI_Send(const void *buf, T count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)
