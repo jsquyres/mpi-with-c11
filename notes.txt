@@ -15,6 +15,10 @@ Notes from the Dec 2015 meeting
 
 Does the forum want this to continue?
 
+a consequence: this will force MPI implementations to be internally
+count-safe.  Yay!
+--> We should do a poll of the MPI implementations.
+
 straw vote:
 - yes: n-2
 - abstain: 1
