@@ -7,9 +7,13 @@ config
 config.log
 config.status
 configure
+libtool
 
 .deps
+.libs
 *.o
+*.la
+*.lo
 
 a.out
 test_mpi_send

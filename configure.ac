@@ -7,6 +7,11 @@ AM_INIT_AUTOMAKE([1.11 dist-bzip2 foreign -Wall -Werror])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 AC_PROG_CC_C99
+AC_PROG_CXX
+
+AM_PROG_AR
+
+LT_INIT
 
 # Check for C11 generics
 AC_MSG_CHECKING([For C11 generics])
