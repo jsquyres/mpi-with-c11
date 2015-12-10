@@ -25,8 +25,8 @@ int MPI_Send_x(const char *buf, MPI_Count count, MPI_Datatype datatype, int dest
 #define MPI_Send(buf,count,type,dest,tag,comm)                          \
     _Generic((count),                                                   \
              int:       MPI_Send,                                       \
-             MPI_Count: MPI_Send_x,                                     \
-             default:   MPI_Send)(buf,count,type,dest,tag,comm)
+             MPI_Count: MPI_Send_x                                      \
+    )(buf,count,type,dest,tag,comm)
 #endif
 
 #endif // MPI_C_H

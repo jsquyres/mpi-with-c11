@@ -11,9 +11,12 @@ int main(int argc, char *argv[])
     MPI_Send("short neg",s,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
     MPI_Send("int const",17,MPI_BYTE,0,0,MPI_COMM_WORLD);
+#if 0
     MPI_Send("long const",18L,MPI_BYTE,0,0,MPI_COMM_WORLD);
+#endif
     MPI_Send("long long const",19LL,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
+#if 0
     // 2^31+1
     unsigned u = 2147483649;
     MPI_Send("unsigned",u,MPI_BYTE,0,0,MPI_COMM_WORLD);
@@ -26,6 +29,7 @@ int main(int argc, char *argv[])
 
     MPI_Aint a = 27;
     MPI_Send("MPI_Aint",a,MPI_BYTE,0,0,MPI_COMM_WORLD);
+#endif
 
     MPI_Count c = 9223372036854775809ULL;
     MPI_Send("MPI_Count",c,MPI_BYTE,0,0,MPI_COMM_WORLD);

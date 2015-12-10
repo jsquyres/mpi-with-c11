@@ -16,4 +16,5 @@ libtool
 *.lo
 
 a.out
-test_mpi_send
+test_c
+test_cxx
