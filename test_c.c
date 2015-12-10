@@ -6,12 +6,9 @@
 int main(int argc, char *argv[])
 {
     short s = 3;
-#if 0
     MPI_Send("short",s,MPI_BYTE,0,0,MPI_COMM_WORLD);
-#endif
     MPI_Send("short (cast int)",(int)s,MPI_BYTE,0,0,MPI_COMM_WORLD);
     MPI_Send("short (cast count)",(MPI_Count)s,MPI_BYTE,0,0,MPI_COMM_WORLD);
-#if 0
     s = -3;
     MPI_Send("short neg",s,MPI_BYTE,0,0,MPI_COMM_WORLD);
 
@@ -31,7 +28,6 @@ int main(int argc, char *argv[])
 
     MPI_Aint a = 27;
     MPI_Send("MPI_Aint",a,MPI_BYTE,0,0,MPI_COMM_WORLD);
-#endif
 
     MPI_Count c = 9223372036854775809ULL;
     MPI_Send("MPI_Count",c,MPI_BYTE,0,0,MPI_COMM_WORLD);
